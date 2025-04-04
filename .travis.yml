@@ -12,3 +12,9 @@ after_success:
   - docker build -t aloneinabyss/multi-nginx -f ./nginx
   - docker build -t aloneinabyss/multi-server -f ./server
   - docker build -t aloneinabyss/multi-worker -f ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push aloneinabyss/multi-client
+  - docker push aloneinabyss/multi-nginx
+  - docker push aloneinabyss/multi-server
+  - docker push aloneinabyss/multi-worker
